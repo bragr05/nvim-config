@@ -1,0 +1,28 @@
+# Neovim specific
+.nvim/
+lazy-lock.json
+tmp/
+*.swp
+*.swo
+*~
+*.bak
+*.un~
+*.luac
+packer_compiled.lua
+plugin/
+start/
+after/
+ftplugin/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Ctags
+tags
+
+# Session files
+*.session
