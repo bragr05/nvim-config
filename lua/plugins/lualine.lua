@@ -3,8 +3,6 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
     config = function()
-        local theme = require("core.theme")
-
         vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", ctermbg = "NONE" })
         vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE", ctermbg = "NONE" })
 
@@ -26,9 +24,69 @@ return {
             return ''
         end
 
+        local theme = require("core.theme")
+        local colors = theme.colors
+
+        local lualine_theme = {
+            normal = {
+                a = { fg = colors.black, bg = colors.blue, gui = "bold" },
+                b = { fg = colors.white, bg = colors.black },
+                c = { fg = colors.white, bg = colors.black },
+                x = { fg = colors.white, bg = colors.black },
+                y = { fg = colors.blue, bg = colors.black },
+                z = { fg = colors.black, bg = colors.blue, gui = "bold" },
+            },
+
+            insert = {
+                a = { fg = colors.black, bg = colors.green, gui = "bold" },
+                b = { fg = colors.white, bg = colors.black },
+                c = { fg = colors.green, bg = colors.black },
+                x = { fg = colors.green, bg = colors.black },
+                y = { fg = colors.green, bg = colors.black },
+                z = { fg = colors.black, bg = colors.green, gui = "bold" },
+            },
+
+            visual = {
+                a = { fg = colors.black, bg = colors.yellow, gui = "bold" },
+                b = { fg = colors.white, bg = colors.black },
+                c = { fg = colors.yellow, bg = colors.black },
+                x = { fg = colors.yellow, bg = colors.black },
+                y = { fg = colors.yellow, bg = colors.black },
+                z = { fg = colors.black, bg = colors.yellow, gui = "bold" },
+            },
+
+            command = {
+                a = { fg = colors.black, bg = colors.yellow, gui = "bold" },
+                b = { fg = colors.white, bg = colors.black },
+                c = { fg = colors.yellow, bg = colors.black },
+                x = { fg = colors.yellow, bg = colors.black },
+                y = { fg = colors.yellow, bg = colors.black },
+                z = { fg = colors.black, bg = colors.yellow, gui = "bold" },
+            },
+
+            replace = {
+                a = { fg = colors.black, bg = colors.red, gui = "bold" },
+                b = { fg = colors.white, bg = colors.black },
+                c = { fg = colors.red, bg = colors.black },
+                x = { fg = colors.red, bg = colors.black },
+                y = { fg = colors.red, bg = colors.black },
+                z = { fg = colors.black, bg = colors.red, gui = "bold" },
+            },
+
+            inactive = {
+                a = { fg = colors.white, bg = colors.black },
+                b = { fg = colors.white, bg = colors.black },
+                c = { fg = colors.white, bg = colors.black },
+                x = { fg = colors.white, bg = colors.black },
+                y = { fg = colors.white, bg = colors.black },
+                z = { fg = colors.white, bg = colors.black },
+            },
+        }
+
+
         require("lualine").setup({
             options = {
-                theme = theme.lualine_theme,
+                theme = lualine_theme,
                 globalstatus = true,
                 component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
@@ -52,14 +110,13 @@ return {
                 lualine_x = {
                     {
                         filesize,
-                        icon = '',
-                        color = { fg = theme.colors.grey }
+                        icon = ''
                     }
                 },
                 lualine_y = {
                     { 'filetype', icon_only = true },
                     { 'encoding', fmt = string.upper },
-                    { os_icon,    color = { fg = theme.colors.blue } }
+                    { os_icon }
                 },
                 lualine_z = {
                     { 'location', separator = { left = '', right = '' }, left_padding = 2 },

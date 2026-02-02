@@ -2,25 +2,30 @@ return {
     "goolord/alpha-nvim",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
+        local theme = require('core.theme')
+
+        if theme and theme.colors then
+            vim.api.nvim_set_hl(0, 'AlphaHeader', { fg = theme.colors.red })
+            vim.api.nvim_set_hl(0, 'AlphaButtons', { fg = theme.colors.yellow })
+            vim.api.nvim_set_hl(0, 'AlphaShortcut', { fg = theme.colors.yellow, italic = true, bold = true })
+            vim.api.nvim_set_hl(0, 'AlphaFooter', { fg = theme.colors.green, italic = true, bold = true })
+        end
+
         local dashboard = require("alpha.themes.dashboard")
 
-        -- 1. HEADER: El logo ASCII
         dashboard.section.header.val = {
-            [[                                   ]],
-            [[                                   ]],
-            [[   ███╗   ██╗███████╗ ██████╗    ]],
-            [[   ████╗  ██║██╔════╝██╔═══██╗   ]],
-            [[   ██╔██╗ ██║█████╗  ██║   ██║   ]],
-            [[   ██║╚██╗██║██╔══╝  ██║   ██║   ]],
-            [[   ██║ ╚████║███████╗╚██████╔╝   ]],
-            [[   ╚═╝  ╚═══╝╚══════╝ ╚═════╝    ]],
-            [[                                   ]],
-            [[   v0.10.0      MACBOOK AIR M4     ]],
+            "                                                     ",
+            "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+            "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+            "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+            "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+            "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+            "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+            "                                                     ",
         }
-        -- Color del logo (Azul de tu paleta)
-        dashboard.section.header.opts.hl = "Number"
 
-        -- 2. BOTONES DEL MENÚ
+        dashboard.section.header.opts.hl = "AlphaHeader"
+
         dashboard.section.buttons.val = {
             dashboard.button("f", "  Buscar Archivo", ":Telescope find_files<CR>"),
             dashboard.button("r", "  Recientes", ":Telescope oldfiles<CR>"),
@@ -30,21 +35,20 @@ return {
             dashboard.button("q", "  Salir", ":qa<CR>"),
         }
 
-        -- Estilos de los botones para que se vean bien en Night Owl
+
         for _, button in ipairs(dashboard.section.buttons.val) do
-            button.opts.hl = "Function"      -- Icono y tecla
-            button.opts.hl_shortcut = "Type" -- El atajo (f, r, etc)
+            button.opts.hl = "AlphaButtons"
+            button.opts.hl_shortcut = "AlphaShortcut"
         end
 
-        -- 3. FOOTER: Estadísticas de carga (Estilo LazyVim)
+
         dashboard.section.footer.val = function()
             local stats = require("lazy").stats()
             local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
             return "⚡ Neovim cargado en " .. ms .. "ms"
         end
-        dashboard.section.footer.opts.hl = "Comment"
+        dashboard.section.footer.opts.hl = "AlphaFooter"
 
-        -- 4. Márgenes y configuración final
         dashboard.config.layout = {
             { type = "padding", val = 2 },
             dashboard.section.header,

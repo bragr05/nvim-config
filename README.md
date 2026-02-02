@@ -1,3 +1,5 @@
+![My Neovim Setup](./assets/image01.png)
+
 # My Personal Neovim Config
 
 ![Neovim Version](https://img.shields.io/badge/Neovim-v0.9.0%2B-57ADEE?style=for-the-badge&logo=neovim&logoColor=white)
@@ -45,7 +47,3 @@ My personal Neovim configuration focused on speed, efficiency, and a clean inter
 
 *   **Leader Key**: `<Space>`
 *   Explore `lua/core/keymaps.lua` for specific keybindings.
-
-## 📸 Screenshots
-
-*(Add your screenshots here to showcase the setup)*

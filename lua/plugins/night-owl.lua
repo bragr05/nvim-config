@@ -10,10 +10,5 @@ return {
             undercurl = true,
             transparent_background = true,
         })
-        
-        local theme = require("core.theme")
-        if theme and theme.colorscheme then
-            vim.cmd.colorscheme(theme.colorscheme)
-        end
     end,
 }
