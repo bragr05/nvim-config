@@ -31,7 +31,6 @@ return {
             dashboard.button("r", "  Recientes", ":Telescope oldfiles<CR>"),
             dashboard.button("g", "  Buscar Texto", ":Telescope live_grep<CR>"),
             dashboard.button("e", "  Explorador", ":Neotree toggle<CR>"),
-            dashboard.button("c", "  Configuración", ":Telescope find_files { cwd = '~/.config/nvim/' }<CR>"),
             dashboard.button("q", "  Salir", ":qa<CR>"),
         }
 
