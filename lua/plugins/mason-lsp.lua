@@ -25,9 +25,7 @@ return {
                 ensure_installed = {
                     "lua_ls",      -- Lua
                     "ts_ls",       -- TypeScript/JavaScript
-                    "html",        -- HTML
-                    "cssls",       -- CSS
-                    "jsonls",      -- JSON
+                    "sqlls",       -- SQL
                 },
                 automatic_installation = true,
             })
