@@ -5,10 +5,10 @@ return {
         local theme = require('core.theme')
 
         if theme and theme.colors then
-            vim.api.nvim_set_hl(0, 'AlphaHeader', { fg = theme.colors.red })
-            vim.api.nvim_set_hl(0, 'AlphaButtons', { fg = theme.colors.yellow })
-            vim.api.nvim_set_hl(0, 'AlphaShortcut', { fg = theme.colors.yellow, italic = true, bold = true })
-            vim.api.nvim_set_hl(0, 'AlphaFooter', { fg = theme.colors.green, italic = true, bold = true })
+            vim.api.nvim_set_hl(0, 'AlphaHeader', { fg = theme.colors.yellow })
+            vim.api.nvim_set_hl(0, 'AlphaButtons', { fg = theme.colors.bright_magenta })
+            vim.api.nvim_set_hl(0, 'AlphaShortcut', { fg = theme.colors.peach, bold = true })
+            vim.api.nvim_set_hl(0, 'AlphaFooter', { fg = theme.colors.blue, italic = true })
         end
 
         local dashboard = require("alpha.themes.dashboard")
@@ -21,7 +21,6 @@ return {
             "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
             "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
             "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-            "                                                     ",
         }
 
         dashboard.section.header.opts.hl = "AlphaHeader"
@@ -34,17 +33,16 @@ return {
             dashboard.button("q", "  Salir", ":qa<CR>"),
         }
 
-
         for _, button in ipairs(dashboard.section.buttons.val) do
             button.opts.hl = "AlphaButtons"
             button.opts.hl_shortcut = "AlphaShortcut"
         end
 
-
         dashboard.section.footer.val = function()
             local stats = require("lazy").stats()
             local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-            return "⚡ Neovim cargado en " .. ms .. "ms"
+
+            return "⚡ Nvim cargado en " .. ms .. "ms"
         end
         dashboard.section.footer.opts.hl = "AlphaFooter"
 

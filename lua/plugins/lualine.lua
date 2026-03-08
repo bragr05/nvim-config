@@ -3,124 +3,81 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
     config = function()
-        vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", ctermbg = "NONE" })
-        vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE", ctermbg = "NONE" })
-
-        local function filesize()
-            local file = vim.fn.expand('%:p')
-            if file == nil or #file == 0 then return '' end
-            local size = vim.fn.getfsize(file)
-            if size <= 0 then return '' end
-            local sufixes = { 'b', 'k', 'm', 'g' }
-            local i = 1
-            while size > 1024 do
-                size = size / 1024
-                i = i + 1
-            end
-            return string.format('%.1f%s', size, sufixes[i])
-        end
-
-        local function os_icon()
-            return ''
-        end
-
         local theme = require("core.theme")
         local colors = theme.colors
 
-        local lualine_theme = {
+        local custom_theme = {
             normal = {
-                a = { fg = colors.black, bg = colors.blue, gui = "bold" },
-                b = { fg = colors.white, bg = colors.black },
-                c = { fg = colors.white, bg = colors.black },
-                x = { fg = colors.white, bg = colors.black },
-                y = { fg = colors.blue, bg = colors.black },
-                z = { fg = colors.black, bg = colors.blue, gui = "bold" },
+                a = { fg = colors.bg, bg = colors.blue, gui = "bold" },
+                b = { fg = colors.fg, bg = colors.dark_blue },
+                c = { fg = colors.gray, bg = "NONE" },
             },
-
             insert = {
-                a = { fg = colors.black, bg = colors.green, gui = "bold" },
-                b = { fg = colors.white, bg = colors.black },
-                c = { fg = colors.green, bg = colors.black },
-                x = { fg = colors.green, bg = colors.black },
-                y = { fg = colors.green, bg = colors.black },
-                z = { fg = colors.black, bg = colors.green, gui = "bold" },
+                a = { fg = colors.bg, bg = colors.orange, gui = "bold" },
+                b = { fg = colors.fg, bg = colors.dark_yellow },
+                c = { fg = colors.gray, bg = "NONE" },
             },
-
             visual = {
-                a = { fg = colors.black, bg = colors.yellow, gui = "bold" },
-                b = { fg = colors.white, bg = colors.black },
-                c = { fg = colors.yellow, bg = colors.black },
-                x = { fg = colors.yellow, bg = colors.black },
-                y = { fg = colors.yellow, bg = colors.black },
-                z = { fg = colors.black, bg = colors.yellow, gui = "bold" },
+                a = { fg = colors.bg, bg = colors.bright_magenta, gui = "bold" },
+                b = { fg = colors.fg, bg = colors.dark_blue },
+                c = { fg = colors.gray, bg = "NONE" },
             },
-
             command = {
-                a = { fg = colors.black, bg = colors.yellow, gui = "bold" },
-                b = { fg = colors.white, bg = colors.black },
-                c = { fg = colors.yellow, bg = colors.black },
-                x = { fg = colors.yellow, bg = colors.black },
-                y = { fg = colors.yellow, bg = colors.black },
-                z = { fg = colors.black, bg = colors.yellow, gui = "bold" },
+                a = { fg = colors.bg, bg = colors.bright_cyan, gui = "bold" },
+                b = { fg = colors.fg, bg = colors.dark_blue },
+                c = { fg = colors.gray, bg = "NONE" },
             },
-
             replace = {
-                a = { fg = colors.black, bg = colors.red, gui = "bold" },
-                b = { fg = colors.white, bg = colors.black },
-                c = { fg = colors.red, bg = colors.black },
-                x = { fg = colors.red, bg = colors.black },
-                y = { fg = colors.red, bg = colors.black },
-                z = { fg = colors.black, bg = colors.red, gui = "bold" },
+                a = { fg = colors.bg, bg = colors.red, gui = "bold" },
+                b = { fg = colors.fg, bg = colors.dark_red },
+                c = { fg = colors.gray, bg = "NONE" },
             },
-
             inactive = {
-                a = { fg = colors.white, bg = colors.black },
-                b = { fg = colors.white, bg = colors.black },
-                c = { fg = colors.white, bg = colors.black },
-                x = { fg = colors.white, bg = colors.black },
-                y = { fg = colors.white, bg = colors.black },
-                z = { fg = colors.white, bg = colors.black },
+                a = { fg = colors.gray, bg = "NONE" },
+                b = { fg = colors.gray, bg = "NONE" },
+                c = { fg = colors.comment, bg = "NONE" },
             },
         }
 
+        local separators_left = vim.fn.nr2char(0xe0b4)
+        local separators_right = vim.fn.nr2char(0xe0b6)
 
         require("lualine").setup({
             options = {
-                theme = lualine_theme,
+                theme = custom_theme,
                 globalstatus = true,
-                component_separators = { left = '', right = '' },
-                section_separators = { left = '', right = '' },
+                component_separators = { left = "", right = "" },
+                section_separators = { left = separators_left, right = separators_right },
             },
             sections = {
-                lualine_a = {
-                    { 'mode', separator = { left = '', right = '' }, right_padding = 2 }
-                },
+                lualine_a = { "mode" },
                 lualine_b = {
-                    'branch',
-                    { 'diff', colored = true, symbols = { added = '+', modified = '~', removed = '-' } }
+                    { "branch", icon = "" },
+                    {
+                        "diff",
+                        symbols = { added = " ", modified = " ", removed = " " },
+                    },
                 },
                 lualine_c = {
-                    '%=',
                     {
-                        'filename',
+                        "filename",
                         path = 1,
-                        symbols = { modified = ' ●', readonly = ' ', unnamed = '[No Name]' }
-                    }
+                        symbols = { modified = " ●", readonly = " ", unnamed = "[Sin nombre]" },
+                    },
                 },
                 lualine_x = {
                     {
-                        filesize,
-                        icon = ''
-                    }
+                        "diagnostics",
+                        sources = { "nvim_lsp" },
+                        symbols = { error = " ", warn = " ", info = " ", hint = " " },
+                    },
                 },
-                lualine_y = {
-                    { 'filetype', icon_only = true },
-                    { 'encoding', fmt = string.upper },
-                    { os_icon }
-                },
-                lualine_z = {
-                    { 'location', separator = { left = '', right = '' }, left_padding = 2 },
-                },
+                lualine_y = { "filetype" },
+                lualine_z = { "location" },
+            },
+            inactive_sections = {
+                lualine_c = { "filename" },
+                lualine_x = { "location" },
             },
         })
     end,

@@ -1,4 +1,4 @@
-![Neovim Setup](./assets/Image.png)
+![Neovim Setup](./assets/image-01.png) ![Neovim Setup](./assets/image-02.png)
 
 # Neovim Config
 
@@ -8,7 +8,7 @@ Configuración moderna de Neovim con LSP, autocompletado y soporte para desarrol
 
 **LSP Servers:** `lua_ls` · `ts_ls` · `sqlls`
 **Plugin Manager:** Lazy.nvim
-**Tema:** Night Owl
+**Tema:** Hakori Dark
 
 ## Plugins
 
@@ -22,27 +22,39 @@ Configuración moderna de Neovim con LSP, autocompletado y soporte para desarrol
 | **lualine** | Statusline |
 | **gitsigns** | Git integration |
 | **trouble** | Diagnostics panel |
+| **flash** | Quick navigation |
 
 ## Keymaps
 
 **Leader:** `<Space>`
 
+### Día a Día
+
 | Atajo | Acción |
 |-------|--------|
+| `s` + `2 letras` | Saltar a cualquier parte |
+| `S` | Saltar por funciones/bloques |
+| `Ctrl-d` / `Ctrl-u` | Bajar/subir media pantalla |
+| `{` / `}` | Moverse entre bloques |
+| `gcc` | Toggle comment |
 | `<leader>e` | Toggle file explorer |
-| `<leader>aa` | Dashboard |
+
+### LSP & Navegación
+
+| Atajo | Acción |
+|-------|--------|
 | `gd` | Go to definition |
 | `K` | Hover docs |
 | `<leader>ca` | Code actions |
 | `<leader>rn` | Rename symbol |
 | `[d` / `]d` | Navigate diagnostics |
-| `gcc` | Toggle comment |
+| `<leader>aa` | Dashboard |
 
 ## Instalación
 
 ```bash
 git clone https://github.com/tu-usuario/nvim-config ~/.config/nvim
-nvim  # Los plugins se instalarán automáticamente
+nvim
 ```
 
 Ejecuta `:Mason` para verificar LSP servers instalados.
