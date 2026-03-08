@@ -53,7 +53,7 @@ Configuración moderna de Neovim con LSP, autocompletado y soporte para desarrol
 ## Instalación
 
 ```bash
-git clone https://github.com/tu-usuario/nvim-config ~/.config/nvim
+git clone https://github.com/bragr05/nvim-config ~/.config/nvim
 nvim
 ```
 
