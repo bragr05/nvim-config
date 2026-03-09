@@ -22,7 +22,7 @@ return {
         vim.api.nvim_set_hl(0, "NeoTreeGitAdded", { fg = colors.teal })
         vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = colors.peach })
         vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { fg = colors.lavender })
-        vim.api.nvim_set_hl(0, "NeoTreeGitDeleted", { fg = colors.red })
+        vim.api.nvim_set_hl(0, "NeoTreeGitDeleted", { fg = colors.pink })
         vim.api.nvim_set_hl(0, "NeoTreeGitIgnored", { fg = colors.comment })
 
         vim.api.nvim_set_hl(0, "NeoTreeIndentMarker", { fg = colors.line_number })
@@ -41,34 +41,47 @@ return {
             default_component_configs = {
                 indent = {
                     with_expanders = true,
-                    expander_collapsed = vim.fn.nr2char(0xf061),
-                    expander_expanded = vim.fn.nr2char(0xf0a3),
+                    expander_collapsed = "▸",
+                    expander_expanded = "▾",
+                    indent_size = 2,
                 },
                 icon = {
-                    folder_closed = vim.fn.nr2char(0xf115),
-                    folder_open = vim.fn.nr2char(0xf114),
-                    folder_empty = vim.fn.nr2char(0xf0256),
-                    folder_empty_open = vim.fn.nr2char(0xf0dcf),
+                    folder_closed = "",
+                    folder_open = "",
+                    folder_empty = "",
+                    folder_empty_open = "",
                 },
                 git_status = {
                     symbols = {
-                        added     = "",
-                        modified  = "",
-                        deleted   = "✖",
-                        renamed   = "➜",
-                        untracked = "★",
-                        ignored   = "◌",
+                        added     = "+",
+                        modified  = "~",
+                        deleted   = "-",
+                        renamed   = "→",
+                        untracked = "?",
+                        ignored   = "",
                         unstaged  = "✗",
                         staged    = "✓",
-                        conflict  = "",
+                        conflict  = "!",
                     }
                 },
             },
             filesystem = {
                 filtered_items = {
-                    visible = true,
-                    hide_dotfiles = false,
-                    hide_gitignored = false,
+                    visible = false,
+                    hide_dotfiles = true,
+                    hide_gitignored = true,
+                    hide_by_name = {
+                        ".git",
+                        ".DS_Store",
+                        "thumbs.db",
+                        "node_modules",
+                        "__pycache__",
+                        ".cache",
+                    },
+                    never_show = {
+                        ".git",
+                        ".DS_Store",
+                    },
                 },
                 follow_current_file = {
                     enabled = true,

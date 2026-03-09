@@ -20,14 +20,6 @@ return {
             end,
             desc = "Flash",
         },
-        {
-            "S",
-            mode = { "n", "x", "o" },
-            function()
-                require("flash").treesitter()
-            end,
-            desc = "Flash Treesitter",
-        },
     },
     config = function(_, opts)
         local theme = require("core.theme")

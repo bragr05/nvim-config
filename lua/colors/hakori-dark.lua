@@ -238,18 +238,6 @@ function M.setup()
         AlphaShortcut = { fg = c.pink, bold = true },
         AlphaFooter = { fg = c.soft_purple, italic = true },
 
-        CmpItemAbbrDeprecated = { fg = c.gray, strikethrough = true },
-        CmpItemAbbrMatch = { fg = c.pink, bold = true },
-        CmpItemAbbrMatchFuzzy = { fg = c.peach, bold = true },
-        CmpItemKindVariable = { fg = c.bright_blue },
-        CmpItemKindInterface = { fg = c.bright_cyan },
-        CmpItemKindText = { fg = c.fg },
-        CmpItemKindFunction = { fg = c.gold },
-        CmpItemKindMethod = { fg = c.bright_yellow },
-        CmpItemKindKeyword = { fg = c.magenta },
-        CmpItemKindProperty = { fg = c.bright_cyan },
-        CmpItemKindUnit = { fg = c.teal },
-
         IblIndent = { fg = c.black },
         IblScope = { fg = c.gray },
     }

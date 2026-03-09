@@ -65,13 +65,7 @@ return {
                         symbols = { modified = " ●", readonly = " ", unnamed = "[Sin nombre]" },
                     },
                 },
-                lualine_x = {
-                    {
-                        "diagnostics",
-                        sources = { "nvim_lsp" },
-                        symbols = { error = " ", warn = " ", info = " ", hint = " " },
-                    },
-                },
+                lualine_x = { "encoding", "fileformat" },
                 lualine_y = { "filetype" },
                 lualine_z = { "location" },
             },

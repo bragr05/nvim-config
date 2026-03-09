@@ -1,53 +1,42 @@
-![Neovim Setup](./assets/image-01.png) ![Neovim Setup](./assets/image-02.png)
+![Neovim Setup](./assets/image.png)
 
 # Neovim Config
 
-Configuración moderna de Neovim con LSP, autocompletado y soporte para desarrollo web.
+Configuración minimalista de Neovim para edición básica de archivos.
 
-## Stack
-
-**LSP Servers:** `lua_ls` · `ts_ls` · `sqlls`
 **Plugin Manager:** Lazy.nvim
-**Tema:** Hakori Dark
+**Tema:** Hakori Dark (custom)
 
 ## Plugins
 
 | Plugin | Función |
 |--------|---------|
 | **telescope** | Fuzzy finder |
-| **nvim-cmp** | Autocompletado |
-| **treesitter** | Syntax highlighting |
-| **mason** | LSP installer |
 | **neo-tree** | File explorer |
 | **lualine** | Statusline |
 | **gitsigns** | Git integration |
-| **trouble** | Diagnostics panel |
 | **flash** | Quick navigation |
+| **alpha** | Dashboard |
+| **autopairs** | Auto close brackets |
+| **comment** | Toggle comments |
+| **colorizer** | Color preview |
+| **indent-blankline** | Indent guides |
 
 ## Keymaps
 
 **Leader:** `<Space>`
 
-### Día a Día
+### Navegación
 
 | Atajo | Acción |
 |-------|--------|
-| `s` + `2 letras` | Saltar a cualquier parte |
-| `S` | Saltar por funciones/bloques |
+| `s` + `2 letras` | Saltar a cualquier parte (Flash) |
 | `Ctrl-d` / `Ctrl-u` | Bajar/subir media pantalla |
 | `{` / `}` | Moverse entre bloques |
 | `gcc` | Toggle comment |
 | `<leader>e` | Toggle file explorer |
-
-### LSP & Navegación
-
-| Atajo | Acción |
-|-------|--------|
-| `gd` | Go to definition |
-| `K` | Hover docs |
-| `<leader>ca` | Code actions |
-| `<leader>rn` | Rename symbol |
-| `[d` / `]d` | Navigate diagnostics |
+| `<leader>ff` | Buscar archivos (Telescope) |
+| `<leader>fg` | Buscar en archivos (Grep) |
 | `<leader>aa` | Dashboard |
 
 ## Instalación
@@ -56,5 +45,3 @@ Configuración moderna de Neovim con LSP, autocompletado y soporte para desarrol
 git clone https://github.com/bragr05/nvim-config ~/.config/nvim
 nvim
 ```
-
-Ejecuta `:Mason` para verificar LSP servers instalados.
